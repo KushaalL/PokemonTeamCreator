@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "373044948256",
+    "project_id": "pokemon-team-creator-e4314",
+    "storage_bucket": "pokemon-team-creator-e4314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373044948256:android:6d94348ee9b18b5149fb45",
+        "android_client_info": {
+          "package_name": "com.example.pokemonteamcreator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373044948256-8r3d7hm4f32f8c5hmbu3u2f9a0subao7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJpnYmqOFbB6EtXgWTSWGEM-AXLQKE9Ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373044948256-8r3d7hm4f32f8c5hmbu3u2f9a0subao7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
