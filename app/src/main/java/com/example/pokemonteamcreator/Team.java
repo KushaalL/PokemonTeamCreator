@@ -1,8 +1,10 @@
 package com.example.pokemonteamcreator;
 
-import android.graphics.Bitmap;
 
-public class Team
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Team implements Parcelable
 {
     private String name;
     private Pokemon p1,p2,p3,p4,p5,p6;
@@ -16,6 +18,23 @@ public class Team
         this.p5 = p5;
         this.p6 = p6;
     }
+
+    protected Team(Parcel in) {
+        name = in.readString();
+    }
+
+    public static final Creator<Team> CREATOR = new Creator<Team>() {
+        @Override
+        public Team createFromParcel(Parcel in) {
+            return new Team(in);
+        }
+
+        @Override
+        public Team[] newArray(int size) {
+            return new Team[size];
+        }
+    };
+
     public Pokemon getPokemon1()
     {
         return p1;
@@ -43,5 +62,16 @@ public class Team
     public String getName()
     {
         return name;
+    }
+    public String toString(){return name;}
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
     }
 }

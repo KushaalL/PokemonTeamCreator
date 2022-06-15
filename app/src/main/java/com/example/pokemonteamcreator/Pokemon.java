@@ -1,21 +1,27 @@
 package com.example.pokemonteamcreator;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 
 public class Pokemon
 {
-    private String name, type1, type2, ability1;
-    private Bitmap pic;
+    private String name, type1, type2, ability1, pic;
 
-    public Pokemon(String name, String type1, String type2, String ability1, Bitmap pic)
+    public Pokemon(String name, String type1, String type2, String ability1, Bitmap image)
     {
         this.name = name;
         this.type1 = type1;
         this.type2 = type2;
         this.ability1 = ability1;
-        this.pic = pic;
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG,100,stream);
+        byte[] bytes=stream.toByteArray();
+        pic = Base64.encodeToString(bytes,Base64.DEFAULT);
     }
 
     public String getName()
@@ -36,7 +42,9 @@ public class Pokemon
     }
     public Bitmap getPic()
     {
-        return pic;
+        byte[] bytes=Base64.decode(pic,Base64.DEFAULT);
+        Bitmap img = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        return img;
     }
     public String toString()
     {
