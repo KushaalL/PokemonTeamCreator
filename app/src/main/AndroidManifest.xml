@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokemonTeamCreator">
         <activity
+            android:name=".TeamView"
+            android:exported="false" />
+        <activity
+            android:name=".PokemonView"
+            android:exported="false" />
+        <activity
             android:name=".PokemonCreator"
             android:exported="false" />
         <activity

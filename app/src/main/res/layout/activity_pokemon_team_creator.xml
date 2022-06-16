@@ -10,98 +10,99 @@
         android:id="@+id/createTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="Create Team"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPokeList2"
-        app:layout_constraintStart_toStartOf="@+id/recyclerViewPokeList2"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPokeList2" />
+        app:layout_constraintEnd_toEndOf="@+id/TeamCreator_ListViewPokemon"
+        app:layout_constraintStart_toStartOf="@+id/TeamCreator_ListViewPokemon"
+        app:layout_constraintTop_toBottomOf="@+id/TeamCreator_ListViewPokemon" />
 
     <ImageView
-        android:id="@+id/poke1"
+        android:id="@+id/TeamViewer_PokePic1"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_TeamName"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/poke2"
+        android:id="@+id/TeamViewer_PokePic2"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_TeamName"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/poke4"
+        android:id="@+id/TeamViewer_PokePic4"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/poke2"
-        app:layout_constraintStart_toStartOf="@+id/poke2"
-        app:layout_constraintTop_toBottomOf="@+id/poke2"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic2"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic2"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic2"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/poke6"
+        android:id="@+id/TeamViewer_PokePic6"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/poke4"
-        app:layout_constraintStart_toStartOf="@+id/poke4"
-        app:layout_constraintTop_toBottomOf="@+id/poke4"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic4"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic4"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic4"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/poke3"
+        android:id="@+id/TeamViewer_PokePic3"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/poke1"
-        app:layout_constraintStart_toStartOf="@+id/poke1"
-        app:layout_constraintTop_toBottomOf="@+id/poke1"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic1"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic1"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic1"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/poke5"
+        android:id="@+id/TeamViewer_PokePic5"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/poke3"
-        app:layout_constraintStart_toStartOf="@+id/poke3"
-        app:layout_constraintTop_toBottomOf="@+id/poke3"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic3"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic3"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic3"
         app:srcCompat="@drawable/pokeball"
         tools:src="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/TeamViewer_TeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:gravity="center_horizontal"
+        android:hint="Enter Team Name"
         android:inputType="textPersonName"
-        android:text="Enter Team Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPokeList2"
-        android:layout_width="283dp"
-        android:layout_height="202dp"
-        android:layout_marginTop="15dp"
+    <ListView
+        android:id="@+id/TeamCreator_ListViewPokemon"
+        android:layout_width="351dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/poke5" />
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

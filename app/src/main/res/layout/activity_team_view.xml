@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PokemonTeamCreator">
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName1"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName1"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName1"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName2"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName2"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName2"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName4"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName4"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName4"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic6"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName6"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName6"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName6"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName3"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName3"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName3"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/TeamViewer_PokePic5"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/teamViewer_PokeName5"
+        app:layout_constraintStart_toStartOf="@+id/teamViewer_PokeName5"
+        app:layout_constraintTop_toBottomOf="@+id/teamViewer_PokeName5"
+        app:srcCompat="@drawable/pokeball"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/TeamViewer_TeamName"
+        android:layout_width="190dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="5dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName1"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_TeamName" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName5"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic3"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic3"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic3" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName3"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic1"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic1"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic1" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName2"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="25dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_TeamName" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName6"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic4"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic4"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic4" />
+
+    <TextView
+        android:id="@+id/teamViewer_PokeName4"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/TeamViewer_PokePic2"
+        app:layout_constraintStart_toStartOf="@+id/TeamViewer_PokePic2"
+        app:layout_constraintTop_toBottomOf="@+id/TeamViewer_PokePic2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

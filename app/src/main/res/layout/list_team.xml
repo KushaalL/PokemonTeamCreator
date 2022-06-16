@@ -8,11 +8,16 @@
             app:layout_constraintEnd_toStartOf="@+id/team_p2"
             android:layout_marginEnd="50dp"
             app:layout_constraintTop_toTopOf="@+id/team_p2" app:layout_constraintBottom_toBottomOf="@+id/team_p2"/>
+
     <ImageView
-            android:layout_width="68dp"
-            android:layout_height="67dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/team_p2"
-            app:layout_constraintEnd_toEndOf="@+id/team_name" app:layout_constraintStart_toStartOf="@+id/team_name"
-            android:layout_marginTop="21dp" app:layout_constraintTop_toBottomOf="@+id/team_name"/>
+        android:id="@+id/team_p2"
+        android:layout_width="68dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/team_name"
+        app:layout_constraintStart_toStartOf="@+id/team_name"
+        app:layout_constraintTop_toBottomOf="@+id/team_name"
+        tools:srcCompat="@tools:sample/avatars" />
     <ImageView
             android:layout_width="68dp"
             android:layout_height="67dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/team_p3"
@@ -25,22 +30,30 @@
             app:layout_constraintEnd_toStartOf="@+id/team_p5"
             android:layout_marginEnd="50dp" app:layout_constraintTop_toTopOf="@+id/team_p5"
             app:layout_constraintBottom_toBottomOf="@+id/team_p5"/>
+
     <ImageView
-            android:layout_width="68dp"
-            android:layout_height="67dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/team_p5"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/team_p2" app:layout_constraintEnd_toEndOf="@+id/team_p2"
-            app:layout_constraintStart_toStartOf="@+id/team_p2"/>
+        android:id="@+id/team_p5"
+        android:layout_width="68dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/team_p2"
+        app:layout_constraintStart_toStartOf="@+id/team_p2"
+        app:layout_constraintTop_toBottomOf="@+id/team_p2"
+        tools:srcCompat="@tools:sample/avatars" />
     <ImageView
             android:layout_width="68dp"
             android:layout_height="67dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/team_p6"
             app:layout_constraintTop_toTopOf="@+id/team_p5"
             app:layout_constraintBottom_toBottomOf="@+id/team_p5" app:layout_constraintStart_toEndOf="@+id/team_p5"
             android:layout_marginStart="50dp"/>
+
     <TextView
-            android:layout_width="217dp"
-            android:layout_height="34dp" android:id="@+id/team_name"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center" android:layout_marginTop="5dp"/>
+        android:id="@+id/team_name"
+        android:layout_width="217dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

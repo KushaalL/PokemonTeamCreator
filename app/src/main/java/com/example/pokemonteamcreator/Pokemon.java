@@ -11,7 +11,10 @@ import java.io.ByteArrayOutputStream;
 public class Pokemon
 {
     private String name, type1, type2, ability1, pic;
+    public Pokemon()
+    {
 
+    }
     public Pokemon(String name, String type1, String type2, String ability1, Bitmap image)
     {
         this.name = name;
@@ -40,16 +43,13 @@ public class Pokemon
     {
         return ability1;
     }
-    public Bitmap getPic()
+    public String getPic()
     {
-        byte[] bytes=Base64.decode(pic,Base64.DEFAULT);
-        Bitmap img = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-        return img;
+        return pic;
     }
     public String toString()
     {
         return name;
     }
-
 
 }

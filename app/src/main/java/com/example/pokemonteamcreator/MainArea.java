@@ -2,120 +2,119 @@ package com.example.pokemonteamcreator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import com.jakewharton.processphoenix.ProcessPhoenix;
 import java.util.ArrayList;
 
-public class MainArea extends AppCompatActivity implements RecyclerPokemonAdapter.OnItemClickedListener {
+public class MainArea extends AppCompatActivity {
     String user;
     ArrayList<Team>TeamList;
     ArrayList<Pokemon>PokeList;
     DatabaseReference myRef;
     FirebaseDatabase database;
-    RecyclerView recyclerViewTeam,recyclerViewPokemon;
-    RecyclerTeamAdapter teamAdapter;
-    RecyclerPokemonAdapter pokemonAdapter;
-    RecyclerView.LayoutManager layoutManagerTeam,layoutManagerPokemon;
     Button addTeam,addPokemon,signOut;
+    ListView ListPokemon,ListTeam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_main_area);
-        recyclerViewTeam = findViewById(R.id.recyclerViewTeamList);
-        recyclerViewPokemon = findViewById(R.id.recyclerViewPokeList);
+        setContentView(R.layout.activity_main_area);
         user = getIntent().getStringExtra("user");
-        addTeam = findViewById(R.id.button_addTeam);
+        ListPokemon = findViewById(R.id.MainArea_PokemonListView);
+        ListPokemon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent goToPokeViewer = new Intent(MainArea.this,PokemonView.class);
+                goToPokeViewer.putExtra("Pokemon",i);
+                goToPokeViewer.putExtra("user",user);
+                startActivity(goToPokeViewer);
+            }
+        });
+        ListTeam = findViewById(R.id.MainArea_TeamListView);
+        ListTeam.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent goToTeamViewer = new Intent(MainArea.this,TeamView.class);
+                goToTeamViewer.putExtra("user",user);
+                goToTeamViewer.putExtra("Team",i);
+                startActivity(goToTeamViewer);
+            }
+        });
+        addTeam = findViewById(R.id.button_addingPokemonTeam);
         addTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addingTeam = new Intent(MainArea.this,PokemonTeamCreator.class);
-                addingTeam.putExtra("user",user);
-                startActivity(addingTeam);
+                System.out.println("Going to team creator");
+                Intent addingPokemonTeam = new Intent(MainArea.this,PokemonTeamCreator.class);
+                addingPokemonTeam.putExtra("user",user);
+                startActivity(addingPokemonTeam);
             }
         });
         addPokemon = findViewById(R.id.button_addPokemon);
         addPokemon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addingTeam = new Intent(MainArea.this,PokemonCreator.class);
-                addingTeam.putExtra("user",user);
-                startActivity(addingTeam);
+                Intent addingPokemon = new Intent(MainArea.this,PokemonCreator.class);
+                addingPokemon.putExtra("user",user);
+                startActivity(addingPokemon);
             }
         });
         signOut = findViewById(R.id.button_SignOut);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ProcessPhoenix.triggerRebirth(getApplicationContext());
             }
         });
-        layoutManagerTeam = new LinearLayoutManager(getApplicationContext());
-        layoutManagerPokemon = new LinearLayoutManager(getApplicationContext());
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
         TeamList = new ArrayList<>();
         PokeList = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(user).child("TeamList").exists())
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(user).child("PokeList").exists())
                 {
-                    TeamList = (ArrayList<Team>) snapshot.child(user).child("TeamList").getValue();
-                    System.out.println("Hey");
-                    for(int x = 0;x<TeamList.size();x++)
+                    for(DataSnapshot snapshot:dataSnapshot.child(user).child("PokeList").getChildren())
                     {
-                        System.out.println(TeamList.get(x).getName());
-                        System.out.println("Hi");
+                        PokeList.add(snapshot.getValue(Pokemon.class));
                     }
                 }
-                if(snapshot.child(user).child("PokeList").exists())
+                if(dataSnapshot.child(user).child("TeamList").exists())
                 {
-                    PokeList = (ArrayList<Pokemon>) snapshot.child(user).child("PokeList").getValue();
-                    for(int x = 0;x<PokeList.size();x++)
+                    for(DataSnapshot snapshot:dataSnapshot.child(user).child("TeamList").getChildren())
                     {
-                        System.out.println(PokeList.get(x).getName());
-                        System.out.println("Hi");
+                        String teamName = snapshot.child("name").getValue().toString();
+                        Pokemon poke1 = snapshot.child("pokemon1").getValue(Pokemon.class);
+                        Pokemon poke2 = snapshot.child("pokemon2").getValue(Pokemon.class);
+                        Pokemon poke3 = snapshot.child("pokemon3").getValue(Pokemon.class);
+                        Pokemon poke4 = snapshot.child("pokemon4").getValue(Pokemon.class);
+                        Pokemon poke5 = snapshot.child("pokemon5").getValue(Pokemon.class);
+                        Pokemon poke6 = snapshot.child("pokemon6").getValue(Pokemon.class);
+                        Team team = new Team(teamName,poke1,poke2,poke3,poke4,poke5,poke6);
+                        TeamList.add(team);
                     }
                 }
-                teamAdapter = new RecyclerTeamAdapter(TeamList);
-                recyclerViewTeam.setLayoutManager(layoutManagerTeam);
-                recyclerViewTeam.setItemAnimator(new DefaultItemAnimator());
-                recyclerViewTeam.setAdapter(teamAdapter);
-                pokemonAdapter = new RecyclerPokemonAdapter(PokeList,MainArea.this);
-                recyclerViewPokemon.setLayoutManager(layoutManagerPokemon);
-                recyclerViewPokemon.setItemAnimator(new DefaultItemAnimator());
-                recyclerViewPokemon.setAdapter(pokemonAdapter);
+                ListViewPokemonAdapter listViewPokemonAdapter = new ListViewPokemonAdapter(MainArea.this,R.layout.list_pokemon,PokeList);
+                ListPokemon.setAdapter(listViewPokemonAdapter);
+                ListViewTeamAdapter listViewTeamAdapter = new ListViewTeamAdapter(MainArea.this,R.layout.list_team,TeamList);
+                ListTeam.setAdapter(listViewTeamAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-        addTeam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
-    }
-
-    @Override
-    public void OnItemClickedListener(int position) {
-
     }
 }

@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PokemonCreator">
 
-    <Button
-        android:id="@+id/createPokemonButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Create Pokemon"
-        app:layout_constraintEnd_toEndOf="@+id/PokemonViewer_pokemonAbility"
-        app:layout_constraintStart_toStartOf="@+id/PokemonViewer_pokemonAbility"
-        app:layout_constraintTop_toBottomOf="@+id/PokemonViewer_pokemonAbility" />
-
     <TextView
         android:id="@+id/PokemonViewer_pokemonType"
         android:layout_width="wrap_content"
@@ -54,20 +44,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Pokemon Creator"
+        android:text="Pokemon Viewer"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/PokemonViewer_Name"
         android:layout_width="256dp"
         android:layout_height="44dp"
         android:layout_marginTop="20dp"
+        android:autoSizeTextType="uniform"
         android:ems="10"
-        android:hint="Enter Name of Pokemon"
-        android:inputType="textPersonName"
+        android:gravity="center"
+        android:text="Name"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4"

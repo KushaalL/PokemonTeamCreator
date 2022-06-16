@@ -26,9 +26,7 @@ public class Login extends AppCompatActivity {
     EditText password;
     DatabaseReference myRef;
     FirebaseDatabase database;
-    ArrayList<Pokemon>PokeList;
-    ArrayList<Team>TeamList;
-    ArrayList<String>UsersList;
+    boolean checkName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +35,6 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPassword);
         SignIn = findViewById(R.id.buttonSignIn);
         SignUp = findViewById(R.id.buttonSignUp);
-        PokeList = new ArrayList<>();
-        UsersList = new ArrayList<>();
-        TeamList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
         SignIn.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +73,39 @@ public class Login extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public   void onClick(View view) {
-                myRef.child(username.getText().toString()).child("Username").setValue(username.getText().toString());
-                myRef.child(username.getText().toString()).child("Password").setValue(password.getText().toString());
-                myRef.child(username.getText().toString()).child("PokeList").setValue(PokeList);
-                myRef.child(username.getText().toString()).child("TeamList").setValue(TeamList);
+                checkName = false;
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists())
+                        {
+                            for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                            {
+                                if(username.getText().toString().equals((String)snapshot.child("Username").getValue()))
+                                {
+                                    checkName = true;
+                                }
+                            }
+                            if(checkName)
+                            {
+                                Toast.makeText(Login.this,"Username in Use",Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                myRef.child(username.getText().toString()).child("Username").setValue(username.getText().toString());
+                                myRef.child(username.getText().toString()).child("Password").setValue(password.getText().toString());
+                                Intent signInComplete = new Intent(Login.this, MainArea.class);
+                                signInComplete.putExtra("user",username.getText().toString());
+                                startActivity(signInComplete);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
 

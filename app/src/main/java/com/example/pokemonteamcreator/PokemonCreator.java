@@ -1,6 +1,5 @@
 package com.example.pokemonteamcreator;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,12 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,8 +32,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class PokemonCreator extends AppCompatActivity {
     EditText pokeName;
@@ -48,47 +43,26 @@ public class PokemonCreator extends AppCompatActivity {
     Bitmap pic;
     DatabaseReference myRef;
     FirebaseDatabase database;
-    ArrayList<Pokemon> PokeList;
-
-
+    boolean checkImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon_creator);
-        pokeName = findViewById(R.id.editTextPokemonName);
-        pokeType1 = findViewById(R.id.pokemonType);
-        pokeType2 = findViewById(R.id.pokemonType2);
-        pokeAbility = findViewById(R.id.pokemonAbility);
+        pokeName = findViewById(R.id.PokemonViewer_Name);
+        pokeType1 = findViewById(R.id.PokemonViewer_pokemonType);
+        pokeType2 = findViewById(R.id.PokemonViewer_pokemonType2);
+        pokeAbility = findViewById(R.id.PokemonViewer_pokemonAbility);
         createPokemon = findViewById(R.id.createPokemonButton);
-        pokePic = findViewById(R.id.creation_imageViewPokePic);
-        PokeList = new ArrayList<>();
+        pokePic = findViewById(R.id.PokemonViewer_imageViewPokePic);
         user = getIntent().getStringExtra("user");
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(user).child("PokeList").exists())
-                {
-                    PokeList = (ArrayList<Pokemon>) snapshot.child(user).child("PokeList").getValue();
-                    for(int x = 0;x<PokeList.size();x++)
-                    {
-                        System.out.println(PokeList.get(x).getName());
-                        System.out.println("Hi");
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         name = "";
         ability = "";
         type1 = "";
         type2 = "";
+        checkImg = false;
         pokeName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -114,16 +88,20 @@ public class PokemonCreator extends AppCompatActivity {
         createPokemon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                result = new Pokemon(pokeName.getText().toString(),type1,type2,ability,pic);
-                PokeList.add(result);
-                System.out.println(user);
-                myRef.child(user).child("PokeList").setValue("hey");
-                Intent goBackToMain = new Intent(PokemonCreator.this,MainArea.class);
-                goBackToMain.putExtra("user",user);
-                startActivity(goBackToMain);
+                if(!ability.equalsIgnoreCase("N/A")&&checkImg)
+                {
+                    result = new Pokemon(pokeName.getText().toString(),type1,type2,ability,pic);
+                    myRef.child(user).child("PokeList").child(pokeName.getText().toString()).setValue(result);
+                    Intent goBackToMain = new Intent(PokemonCreator.this,MainArea.class);
+                    goBackToMain.putExtra("user",user);
+                    startActivity(goBackToMain);
+                }
+                else
+                {
+                    Toast.makeText(PokemonCreator.this,"Missing Attributes",Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -132,6 +110,7 @@ public class PokemonCreator extends AppCompatActivity {
         {
             pic = (Bitmap)data.getExtras().get("data");
             pokePic.setImageBitmap(pic);
+            checkImg = true;
         }
     }
     private class async extends AsyncTask<Void,Void, JSONObject>

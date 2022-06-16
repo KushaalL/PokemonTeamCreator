@@ -4,16 +4,21 @@
                                                    android:layout_height="match_parent">
 
     <TextView
-            android:layout_width="175dp"
-            android:layout_height="38dp" android:id="@+id/pokemon_name"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="56dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="48dp" android:textSize="20sp"/>
+        android:id="@+id/pokemon_name"
+        android:layout_width="175dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="56dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-            android:layout_width="88dp"
-            android:layout_height="105dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemon_pic"
-            android:layout_marginStart="56dp"
-            app:layout_constraintStart_toEndOf="@+id/pokemon_name"
-            app:layout_constraintTop_toTopOf="@+id/pokemon_name"
-            app:layout_constraintBottom_toBottomOf="@+id/pokemon_name"/>
+        android:id="@+id/pokemon_pic"
+        android:layout_width="88dp"
+        android:layout_height="105dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokemon_name"
+        app:layout_constraintStart_toEndOf="@+id/pokemon_name"
+        app:layout_constraintTop_toTopOf="@+id/pokemon_name"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
